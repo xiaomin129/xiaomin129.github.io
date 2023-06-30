@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiaomin129.github.io">
-  <title>Archives: 2023/6 | 訤緍的个人博客</title>
+  <title>Python在CentOS中将python版本升级为python3.8 | 訤緍的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="神经质的游戏宅，不爽我就喷你">
-<meta property="og:type" content="website">
-<meta property="og:title" content="訤緍的个人博客">
-<meta property="og:url" content="https://xiaomin129.github.io/archives/2023/06/index.html">
+  <meta name="description" content="CentOS自带的是Python2.7,编码格式是asii的，很多程序跑不了和需要改，所以需要对版本进行一个升级。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python在CentOS中将python版本升级为python3.8">
+<meta property="og:url" content="https://xiaomin129.github.io/2023/06/30/Python-update/index.html">
 <meta property="og:site_name" content="訤緍的个人博客">
-<meta property="og:description" content="神经质的游戏宅，不爽我就喷你">
+<meta property="og:description" content="CentOS自带的是Python2.7,编码格式是asii的，很多程序跑不了和需要改，所以需要对版本进行一个升级。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-06-30T01:36:13.000Z">
+<meta property="article:modified_time" content="2023-06-30T02:09:01.534Z">
 <meta property="article:author" content="RudeRope">
-<meta property="article:tag" content="啥也不是">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="CentOS">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="訤緍的个人博客" type="application/atom+xml">
@@ -162,38 +166,57 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Python-update" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Python在CentOS中将python版本升级为python3.8
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2023/06/30/Python-update/" class="archive-article-date">
   	<time datetime="2023-06-30T01:36:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-30</time>
 </a>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/06/30/Python-update/">Python在CentOS中将python版本升级为python3.8</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CentOS自带的是Python2.7,编码格式是asii的，很多程序跑不了和需要改，所以需要对版本进行一个升级。</p>
+<span id="more"></span>
 
-        <div class="article-info info-on-right">
-          
+
+<h3 id="检查已安装的版本信息"><a href="#检查已安装的版本信息" class="headerlink" title="检查已安装的版本信息"></a>检查已安装的版本信息</h3><p>可以先检查一下自己是否安装了Python：</p>
+<p>python -V   #如果一般自带会有python2.7</p>
+<p>python3 -V   #如果安装了python3，则也会输出相对应的版本信息，反之则需要自行安装</p>
+<h3 id="下载Python3-8的软件包"><a href="#下载Python3-8的软件包" class="headerlink" title="下载Python3.8的软件包"></a>下载Python3.8的软件包</h3><p>wget <a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tgz">https://www.python.org/ftp/python/3.8.2/Python-3.8.2.tgz</a> tar xvf Python-3.8.2.tgz</p>
+<h3 id="创建一个需要解压到的文件夹"><a href="#创建一个需要解压到的文件夹" class="headerlink" title="创建一个需要解压到的文件夹"></a>创建一个需要解压到的文件夹</h3><p>cd ..   #回到根目录</p>
+<p>mkdir /usr/local/src/python3</p>
+<h3 id="解压下载的python3安装包"><a href="#解压下载的python3安装包" class="headerlink" title="解压下载的python3安装包"></a>解压下载的python3安装包</h3><p>tar zxvf Python-3.8.2.tgz -C /usr/local/src/python3</p>
+<h3 id="安装编译所需的依赖项"><a href="#安装编译所需的依赖项" class="headerlink" title="安装编译所需的依赖项"></a>安装编译所需的依赖项</h3><p>yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc libffi-devel -y</p>
+<h3 id="进入刚刚解压的文件夹内"><a href="#进入刚刚解压的文件夹内" class="headerlink" title="进入刚刚解压的文件夹内"></a>进入刚刚解压的文件夹内</h3><p>cd usr/local/src/python3/Python-3.8.2</p>
+<h3 id="执行编译命令"><a href="#执行编译命令" class="headerlink" title="执行编译命令"></a>执行编译命令</h3><p>./configure &amp;&amp; make &amp;&amp; make install</p>
+<h3 id="验证Python3是否安装"><a href="#验证Python3是否安装" class="headerlink" title="验证Python3是否安装"></a>验证Python3是否安装</h3><p>python3 -V  #如果出现了版本信息，则安装完成</p>
+<h3 id="删除下载的压缩包"><a href="#删除下载的压缩包" class="headerlink" title="删除下载的压缩包"></a>删除下载的压缩包</h3><p>rm Python-3.8.2.tgz   #提示是否确认，输入y确认</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -213,107 +236,106 @@ var _hmt = _hmt || [];
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://xiaomin129.github.io/2023/06/30/Python-update/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/06/30/code/" class="archive-article-date">
-  	<time datetime="2023-06-29T21:52:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-30</time>
-</a>
 
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2023/06/30/code/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">现在编码是为了以后不编码</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/06/30/code/">现在编码是为了以后不编码</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">胡乱写写</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/06/07/scrapy/" class="archive-article-date">
-  	<time datetime="2023-06-07T14:00:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/06/07/scrapy/">scrapy爬虫框架</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Scrapy</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -351,8 +373,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
