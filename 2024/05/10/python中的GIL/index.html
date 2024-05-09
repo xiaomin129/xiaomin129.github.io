@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiaomin129.github.io">
-  <title>我是訤緍 | 訤緍的个人博客</title>
+  <title>python中的GIL | 訤緍的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="訤緍，不知道为什么会取这个名字（可能就是当时脸滚键盘出来的），但是，就是一直用到了现在。 我只是一只咸鱼，一只兴趣使然的咸鱼，希望翻身，却不想活动的咸鱼。加油，尝试让自己变得有干劲起来吧。">
+  <meta name="description" content="虽然GIL在编程中显得很慢，但是实际上最大的性能瓶颈是我……">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我是訤緍">
-<meta property="og:url" content="https://xiaomin129.github.io/2020/01/21/%E6%88%91%E6%98%AF%E8%A8%A4%E7%B7%8D/index.html">
+<meta property="og:title" content="python中的GIL">
+<meta property="og:url" content="https://xiaomin129.github.io/2024/05/10/python%E4%B8%AD%E7%9A%84GIL/index.html">
 <meta property="og:site_name" content="訤緍的个人博客">
-<meta property="og:description" content="訤緍，不知道为什么会取这个名字（可能就是当时脸滚键盘出来的），但是，就是一直用到了现在。 我只是一只咸鱼，一只兴趣使然的咸鱼，希望翻身，却不想活动的咸鱼。加油，尝试让自己变得有干劲起来吧。">
+<meta property="og:description" content="虽然GIL在编程中显得很慢，但是实际上最大的性能瓶颈是我……">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xiaomin129.github.io/assets/blog/1.jpg">
-<meta property="article:published_time" content="2020-01-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-29T22:03:08.310Z">
+<meta property="article:published_time" content="2024-05-09T17:35:05.000Z">
+<meta property="article:modified_time" content="2024-05-09T19:17:43.314Z">
 <meta property="article:author" content="RudeRope">
-<meta property="article:tag" content="胡乱写写">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xiaomin129.github.io/assets/blog/1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="訤緍的个人博客" type="application/atom+xml">
   
@@ -166,14 +164,14 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-我是訤緍" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-python中的GIL" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      我是訤緍
+      python中的GIL
     </h1>
   
 
@@ -184,8 +182,8 @@ var _hmt = _hmt || [];
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/01/21/%E6%88%91%E6%98%AF%E8%A8%A4%E7%B7%8D/" class="archive-article-date">
-  	<time datetime="2020-01-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-21</time>
+<a href="/2024/05/10/python%E4%B8%AD%E7%9A%84GIL/" class="archive-article-date">
+  	<time datetime="2024-05-09T17:35:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-10</time>
 </a>
 
         
@@ -193,9 +191,17 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>訤緍，不知道为什么会取这个名字（可能就是当时脸滚键盘出来的），但是，就是一直用到了现在。</p>
-<p>我只是一只咸鱼，一只兴趣使然的咸鱼，希望翻身，却不想活动的咸鱼。<br>加油，尝试让自己变得有干劲起来吧。</p>
-<p><img src="/assets/blog/1.jpg"></p>
+        <p>虽然GIL在编程中显得很慢，但是实际上最大的性能瓶颈是我……</p>
+<span id="more"></span>
+<h3 id="GIL是个啥？"><a href="#GIL是个啥？" class="headerlink" title="GIL是个啥？"></a>GIL是个啥？</h3><p>GIL——global interpreter lock（全局解释器锁）：防止线程之间起冲突，防止两个线程同时运行字节码，防止两个线程同时对一个变量进行操作。</p>
+<h3 id="为什么会存在GIL锁？"><a href="#为什么会存在GIL锁？" class="headerlink" title="为什么会存在GIL锁？"></a>为什么会存在GIL锁？</h3><p>在python中，主要通过引用计数来进行内存管理，每个在python中创建的对象都会有一个计数，当对象的计数等于0的时候，python就会释放其所占用的内存。</p>
+<p><font color=red>如果没有GIL锁，当多个线程同时去调用一个对象的时候，有可能会导致计数只增加1，而进程结束的时候，提前将计数归0，导致其他线程再次访问该对象的时候，无法找到有效的内存，导致出错；另一种情况：当计数正常增加，而同时结束的时候，就会导致计数只减一，没有归零，导致内存无法被释放，造成内存泄漏。</font></p>
+<p>因为可能出现上述问题，python引入了GIL锁，让同一时刻只有一个线程可以在运行，防止多个线程同时对一个资源的竞争。这也是python运行速度相对其它语言来说很慢的主要原因之一&nbsp;&nbsp;&nbsp;&nbsp;<br><font color=gray>另一个主要原因是因为python是解释型语言，它会在执行的时候同时编译代码，消耗大量时间。</font></p>
+<h3 id="GIL锁的缺点"><a href="#GIL锁的缺点" class="headerlink" title="GIL锁的缺点"></a>GIL锁的缺点</h3><p>显而易见，拥有GIL锁导致python运行速度缓慢，也无法实现真正意义上的多线程并发，即使是一个多线程的任务，实际上也就只有一个线程在工作，无法发挥多核处理器的性能。</p>
+<h3 id="GIL锁的优点"><a href="#GIL锁的优点" class="headerlink" title="GIL锁的优点"></a>GIL锁的优点</h3><p>GIL锁的优点就是解决上面因为python的内存管理机制而造成的线程安全风险<font color=gray>（虽然还是有可能会出现竞争冒险</font>。</p>
+<hr>
+<p>在python刚诞生的时候，由于硬件上的限制，当时市面上普遍都是单核处理器，所以导致GIL带来的运行速度问题并没有那么明显，随着科技的发展，现在大量多核处理器的出现，使这个问题越来越明显。</p>
+<p>因为python拥有庞大的三方库，应用领域广，拥有良好的社区，语法简介，利于快速开发，所以python目前在市面上还是十分受欢迎。</p>
 
       
 
@@ -209,7 +215,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">胡乱写写</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -265,7 +271,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://xiaomin129.github.io/2020/01/21/%E6%88%91%E6%98%AF%E8%A8%A4%E7%B7%8D/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://xiaomin129.github.io/2024/05/10/python%E4%B8%AD%E7%9A%84GIL/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -279,15 +285,11 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2020/02/06/%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%E5%B0%8F%E6%8A%80%E5%B7%A7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          隐藏文件小技巧
-        
-      </div>
-    </a>
   
+    <a href="/2023/07/02/Cat-Excel/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">表格切分工具</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
