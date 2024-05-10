@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiaomin129.github.io">
-  <title>python-GC�����������ջ��� | 訤緍的个人博客</title>
+  <title>python-GC——垃圾回收机制 | 訤緍的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="�������ջ�����ô��û�л��������������">
+  <meta name="description" content="垃圾回收机制怎么还没有回收我这个垃圾！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python-GC�����������ջ���">
+<meta property="og:title" content="python-GC——垃圾回收机制">
 <meta property="og:url" content="https://xiaomin129.github.io/2024/05/10/python-GC/index.html">
 <meta property="og:site_name" content="訤緍的个人博客">
-<meta property="og:description" content="�������ջ�����ô��û�л��������������">
+<meta property="og:description" content="垃圾回收机制怎么还没有回收我这个垃圾！">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-05-10T09:17:36.000Z">
-<meta property="article:modified_time" content="2024-05-10T10:15:13.006Z">
+<meta property="article:modified_time" content="2024-05-10T10:18:18.377Z">
 <meta property="article:author" content="RudeRope">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
@@ -171,7 +171,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      python-GC�����������ջ���
+      python-GC——垃圾回收机制
     </h1>
   
 
@@ -191,20 +191,20 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>�������ջ�����ô��û�л��������������</p>
+        <p>垃圾回收机制怎么还没有回收我这个垃圾！</p>
 <span id="more"></span>
 
-<h3 id="�Ѻ�ջ"><a href="#�Ѻ�ջ" class="headerlink" title="�Ѻ�ջ"></a>�Ѻ�ջ</h3><p>�򵥵�˵���ǣ�</br>ջ�ڴ��ɲ���ϵͳ�Զ����з�����ͷţ�����Ҫ����Ա���ĺ͹�����</br>�����ڴ����ɳ���Ա��������͹������ڴ档</p>
-<p>ջ��һ���������ڴ������ڳ���������ʱ����Ѿ�������ȷ������һ���Ƚ���������ݽṹ��ÿ�ζ��󱻵���ѹ��ջ��ʱ��ѹ��ջ�У�����ʱ��������</br>���Ƿ��������ڴ����򣬿��Զ�̬�仯��С��ͨ�������洢��̬��������ݡ�</p>
-<p>�������Ա������һ���ڴ��ַ����û�ж������������ͷŵĻ����ͻ�һֱռ�ø��ڴ棬Ӱ��ִ��Ч�ʡ����������ջ��ƾ���Ϊ�˽�������⣬����Ҫ����Ա���ڴ�����������̫��������ɳ����Զ�ִ�С�</p>
-<h3 id="python��GC"><a href="#python��GC" class="headerlink" title="python��GC"></a>python��GC</h3><p>python���������ջ�����Ҫ�����ü�������һ���������õ�ʱ�򣬻�ʹ�ü�����һ�����ö��󲻱�ʹ��֮�󣬸ü�����һ����һ����������ü���Ϊ0��ʱ��python����Ϊ���Ѿ����ٱ�ʹ���ˣ�Ҳ�ͳ�Ϊ��һ�������������ڴ��б�ɾ��������ʹ��sysģ���е�getrefcount��������ȥ��������ü�����</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">a = <span class="string">&#x27;hello&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(sys.getrefcount(a))   <span class="comment"># ���Ϊ2����ֵ��һ�����ã�����Ҳ����ʽ����һ�α���</span></span><br></pre></td></tr></table></figure>
-<p></br><font color=red>���ü�����ȱ�ݣ����������ѭ�����ã����߳�����һЩ�̼߳�ľ���ð�յȣ����п��ܻᵼ��һ�������Ѿ���ȫ�����ٱ����ã������ļ�����û�й��㣬�������ͻ�һֱռ��һ���ڴ棬�����ڴ�й©</font></p>
-<p>Ϊ��Ӧ������ȱ�ݣ�python�л��еڶ������������㷨���������㷨</br>�Ӹ�����ʼ��ÿ��������б����������пɴ�Ķ������һ����ǣ����һ�����󲻿ɴ�µ�������ô���ͻᱻ���������������յ����÷���������Ч�����Ϊѭ�����õȲ������޷����յ��ڴ档</br><font color=red>��������ȱ�ݣ����ײ����ڴ���Ƭ��һЩС���ڴ���Ƭ�����ٴ����ã���ÿ�ν����еĶ��������ȽϺ�ʱ</font></p>
-<p>python�л���һ�ָ��߼��Ļ����㷨���ִ�����</br>�ִ�����ÿ�ν��в�ѯ��ʱ�򶼻�Ѷ������Ϊĳһ�������¶�����ǵ�һ�������һ�����󾭳������õĻ�����ô�ö���Ĵ������ͻ�Խ��Խ�ߣ��ִ������㷨����ٶ��ڳ��ߴ��������ɨ�裬�������ڴ���յ�Ч�ʡ�</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># �۲��������ջ��ƵĹ�������</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span>():</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__del__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;object����deleted&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    obj = TestClass()</span><br><span class="line">    <span class="built_in">print</span>(sys.getrefcount(obj))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
-<p>���������£�</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>   <span class="comment"># �������Ϊ2</span></span><br><span class="line">0bject����deleted <span class="comment"># ����ִ����ϣ����ü������㣬����ɾ��</span></span><br></pre></td></tr></table></figure>
+<h3 id="堆和栈"><a href="#堆和栈" class="headerlink" title="堆和栈"></a>堆和栈</h3><p>简单点说就是：</br>栈内存由操作系统自动进行分配和释放，不需要程序员担心和管理。</br>而堆内存是由程序员进行申请和管理的内存。</p>
+<p>栈是一块连续的内存区域，在程序启动的时候就已经被分配确定，是一种先进后出的数据结构，每次对象被调用压入栈的时候被压入栈中，返回时被弹出。</br>堆是非连续的内存区域，可以动态变化大小，通常用来存储动态分配的数据。</p>
+<p>如果程序员申请了一个内存地址，而没有对它进行主动释放的话，就会一直占用该内存，影响执行效率。而垃圾回收机制就是为了解决该问题，不需要程序员在内存回收上面进行太多操作，由程序自动执行。</p>
+<h3 id="python的GC"><a href="#python的GC" class="headerlink" title="python的GC"></a>python的GC</h3><p>python的垃圾回收机制主要是引用计数，当一个对象被引用的时候，会使该计数加一，当该对象不被使用之后，该计数减一，当一个对象的引用计数为0的时候，python会认为它已经不再被使用了，也就成为了一个垃圾对象，在内存中被删除。可以使用sys模块中的getrefcount函数来回去对象的引用计数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">a = <span class="string">&#x27;hello&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(sys.getrefcount(a))   <span class="comment"># 输出为2，赋值有一次引用，函数也会隐式引用一次变量</span></span><br></pre></td></tr></table></figure>
+<p></br><font color=red>引用计数的缺陷：如果出现了循环引用，或者出现了一些线程间的竞争冒险等，就有可能会导致一个对象已经完全不会再被引用，但它的计数还没有归零，这个对象就会一直占用一块内存，导致内存泄漏</font></p>
+<p>为了应对上述缺陷，python中还有第二种垃圾回收算法：标记清除算法</br>从跟对象开始对每个对象进行遍历，将所有可达的对象进行一个标记，如果一个对象不可达（孤岛），那么它就会被当做垃圾清理回收掉。该方法可以有效解决因为循环引用等产生的无法回收的内存。</br><font color=red>标记清楚的缺陷：容易产生内存碎片，一些小的内存碎片很难再次利用，且每次将所有的对象遍历会比较耗时</font></p>
+<p>python中还有一种更高级的回收算法：分代回收</br>分代回收每次进行查询的时候都会把对象归类为某一代，如新对象就是第一代，如果一个对象经常被引用的话，那么该对象的存活代数就会越来越高，分代回收算法会减少对于长高代数对象的扫描，提升了内存回收的效率。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 观察垃圾回收机制的工作过程</span></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestClass</span>():</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__del__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;object——deleted&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    obj = TestClass()</span><br><span class="line">    <span class="built_in">print</span>(sys.getrefcount(obj))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+<p>输出结果如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>   <span class="comment"># 对象计数为2</span></span><br><span class="line">0bject——deleted <span class="comment"># 函数执行完毕，引用计数归零，对象被删除</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -430,19 +430,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">CentOS</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Django</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Web开发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">CentOS</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -462,15 +462,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">实用技巧</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Scrapy</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">实用技巧</a>
               </li>
             
             <div class="clearfix"></div>
