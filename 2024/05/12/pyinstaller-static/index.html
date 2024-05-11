@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="https://xiaomin129.github.io">
   <title>python打包的时候将如何静态资源文件一起打包进程序里面 | 訤緍的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有时候在将一个程序打包成.EXE可执行文件的时候，代码中可能需要引入一些其他的文件，如果将资源文件与程序放在同级目录下，那样也太不优雅了，且发送可执行程序时比较麻烦 pyinstaller目前普遍的将python代码打包成可执行文件的方法是使用pyinstaller进行打包，它里面有两种模式，一种是将代码打包成一个单独的文件，文件内部包含了所有的支持库；另一种是将代码打包成一个文件夹，文件夹中放着">
+  <meta name="description" content="有时候在将一个程序打包成.EXE可执行文件的时候，代码中可能需要引入一些其他的文件，如果将资源文件与程序放在同级目录下，那样也太不优雅了，且发送可执行程序时比较麻烦">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python打包的时候将如何静态资源文件一起打包进程序里面">
 <meta property="og:url" content="https://xiaomin129.github.io/2024/05/12/pyinstaller-static/index.html">
 <meta property="og:site_name" content="訤緍的个人博客">
-<meta property="og:description" content="有时候在将一个程序打包成.EXE可执行文件的时候，代码中可能需要引入一些其他的文件，如果将资源文件与程序放在同级目录下，那样也太不优雅了，且发送可执行程序时比较麻烦 pyinstaller目前普遍的将python代码打包成可执行文件的方法是使用pyinstaller进行打包，它里面有两种模式，一种是将代码打包成一个单独的文件，文件内部包含了所有的支持库；另一种是将代码打包成一个文件夹，文件夹中放着">
+<meta property="og:description" content="有时候在将一个程序打包成.EXE可执行文件的时候，代码中可能需要引入一些其他的文件，如果将资源文件与程序放在同级目录下，那样也太不优雅了，且发送可执行程序时比较麻烦">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s21.ax1x.com/2024/05/12/pkedYRK.png">
 <meta property="og:image" content="https://s21.ax1x.com/2024/05/12/pkedDII.png">
 <meta property="article:published_time" content="2024-05-11T22:25:49.000Z">
-<meta property="article:modified_time" content="2024-05-11T23:45:14.693Z">
+<meta property="article:modified_time" content="2024-05-11T23:47:55.703Z">
 <meta property="article:author" content="RudeRope">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -195,6 +195,8 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <p>有时候在将一个程序打包成.EXE可执行文件的时候，代码中可能需要引入一些其他的文件，如果将资源文件与程序放在同级目录下，那样也太不优雅了，且发送可执行程序时比较麻烦</p>
+<span id="more"></span>
+
 <h3 id="pyinstaller"><a href="#pyinstaller" class="headerlink" title="pyinstaller"></a>pyinstaller</h3><p>目前普遍的将python代码打包成可执行文件的方法是使用pyinstaller进行打包，它里面有两种模式，一种是将代码打包成一个单独的文件，文件内部包含了所有的支持库；另一种是将代码打包成一个文件夹，文件夹中放着可执行程序和支持库，是可以把需要增加的静态文件放进这个文件夹中的，但是也很容易被找到，且打包成一个文件夹的形式我认为太不优雅了，也不利于发送和传播。</p>
 <h3 id="代码内的操作"><a href="#代码内的操作" class="headerlink" title="代码内的操作"></a>代码内的操作</h3><p>如果想要把所引入的代码外部文件打包进.EXE本身内部，需要在代码中额外写一个方法：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os.path</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resources_path</span>(<span class="params">relative_path</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">getattr</span>(sys, <span class="string">&#x27;frozen&#x27;</span>, <span class="literal">False</span>):</span><br><span class="line">        <span class="keyword">return</span> os.path.join(sys._MEIPASS, relative_path)</span><br><span class="line">    <span class="keyword">return</span> os.path.join(os.path.abspath(<span class="string">&#x27;.&#x27;</span>), relative_path)</span><br></pre></td></tr></table></figure>
