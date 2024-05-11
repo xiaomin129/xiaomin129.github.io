@@ -6,18 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://xiaomin129.github.io">
-  <title>訤緍的个人博客</title>
+  <title>python打包的时候将如何静态资源文件一起打包进程序里面 | 訤緍的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="神经质的游戏宅，不爽我就喷你">
-<meta property="og:type" content="website">
-<meta property="og:title" content="訤緍的个人博客">
-<meta property="og:url" content="https://xiaomin129.github.io/page/2/index.html">
+  <meta name="description" content="有时候在将一个程序打包成.EXE可执行文件的时候，代码中可能需要引入一些其他的文件，如果将资源文件与程序放在同级目录下，那样也太不优雅了，且发送可执行程序时比较麻烦 pyinstaller目前普遍的将python代码打包成可执行文件的方法是使用pyinstaller进行打包，它里面有两种模式，一种是将代码打包成一个单独的文件，文件内部包含了所有的支持库；另一种是将代码打包成一个文件夹，文件夹中放着">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python打包的时候将如何静态资源文件一起打包进程序里面">
+<meta property="og:url" content="https://xiaomin129.github.io/2024/05/12/pyinstaller-static/index.html">
 <meta property="og:site_name" content="訤緍的个人博客">
-<meta property="og:description" content="神经质的游戏宅，不爽我就喷你">
+<meta property="og:description" content="有时候在将一个程序打包成.EXE可执行文件的时候，代码中可能需要引入一些其他的文件，如果将资源文件与程序放在同级目录下，那样也太不优雅了，且发送可执行程序时比较麻烦 pyinstaller目前普遍的将python代码打包成可执行文件的方法是使用pyinstaller进行打包，它里面有两种模式，一种是将代码打包成一个单独的文件，文件内部包含了所有的支持库；另一种是将代码打包成一个文件夹，文件夹中放着">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s21.ax1x.com/2024/05/12/pkedYRK.png">
+<meta property="og:image" content="https://s21.ax1x.com/2024/05/12/pkedDII.png">
+<meta property="article:published_time" content="2024-05-11T22:25:49.000Z">
+<meta property="article:modified_time" content="2024-05-11T23:45:14.693Z">
 <meta property="article:author" content="RudeRope">
-<meta property="article:tag" content="啥也不是">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s21.ax1x.com/2024/05/12/pkedYRK.png">
   
     <link rel="alternative" href="/atom.xml" title="訤緍的个人博客" type="application/atom+xml">
   
@@ -162,23 +167,26 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-scrapy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-pyinstaller-static" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/06/07/scrapy/">scrapy爬虫框架</a>
+    <h1 class="article-title" itemprop="name">
+      python打包的时候将如何静态资源文件一起打包进程序里面
     </h1>
   
 
         
         
-<a href="/2023/06/07/scrapy/" class="archive-article-date">
-  	<time datetime="2023-06-07T14:00:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-06-07</time>
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2024/05/12/pyinstaller-static/" class="archive-article-date">
+  	<time datetime="2024-05-11T22:25:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-05-12</time>
 </a>
 
         
@@ -186,10 +194,22 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Scrapy——破逼爬虫框架，懒得写，不写了。</p>
-        
-          <a class="article-more-a" href="/2023/06/07/scrapy/#more">more >></a>
-        
+        <p>有时候在将一个程序打包成.EXE可执行文件的时候，代码中可能需要引入一些其他的文件，如果将资源文件与程序放在同级目录下，那样也太不优雅了，且发送可执行程序时比较麻烦</p>
+<h3 id="pyinstaller"><a href="#pyinstaller" class="headerlink" title="pyinstaller"></a>pyinstaller</h3><p>目前普遍的将python代码打包成可执行文件的方法是使用pyinstaller进行打包，它里面有两种模式，一种是将代码打包成一个单独的文件，文件内部包含了所有的支持库；另一种是将代码打包成一个文件夹，文件夹中放着可执行程序和支持库，是可以把需要增加的静态文件放进这个文件夹中的，但是也很容易被找到，且打包成一个文件夹的形式我认为太不优雅了，也不利于发送和传播。</p>
+<h3 id="代码内的操作"><a href="#代码内的操作" class="headerlink" title="代码内的操作"></a>代码内的操作</h3><p>如果想要把所引入的代码外部文件打包进.EXE本身内部，需要在代码中额外写一个方法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os.path</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resources_path</span>(<span class="params">relative_path</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">getattr</span>(sys, <span class="string">&#x27;frozen&#x27;</span>, <span class="literal">False</span>):</span><br><span class="line">        <span class="keyword">return</span> os.path.join(sys._MEIPASS, relative_path)</span><br><span class="line">    <span class="keyword">return</span> os.path.join(os.path.abspath(<span class="string">&#x27;.&#x27;</span>), relative_path)</span><br></pre></td></tr></table></figure>
+
+<p>在这里的relative_path传入的参数就是代码文件和资源文件的相对地址就可以了<font color=gray>(因为是有os.path.join，所以文件相对地址开头就不要./了)</font></p>
+<p>示例：<a target="_blank" rel="noopener" href="https://imgse.com/i/pkedYRK"><img src="https://s21.ax1x.com/2024/05/12/pkedYRK.png" alt="pkedYRK.png"></a></p>
+<p>我们可以看看这个函数都做了些什么操作：首先它会去判断sys下面有没有一个叫做”frozen”的属性，如果没有找到这个属性，就默认返回false，并根据这个结果返回不同的文件路径。</p>
+<p>如果你去sys.py这个文件里查看，你会发现，它里面是并没有定义叫”frozen”这个属性或者方法的，也就是我们在代码中执行的时候，就会执行os.path.join(os.path.abspath(‘.’), relative_path)，也就是会将现在代码的地址和传入的相对地址拼接起来，获取到一个新的地址，也就是我们编写代码的时候文件的完整地址，在这个地址去访问对应的文件。</p>
+<p>而如果是程序已经被打包完成了，那么在打包的时候pyinstaller会在sys中添加一个”frozen”属性，那么上述代码的if判断就会成功，就会执行os.path.join(sys._MEIPASS, relative_path)，打包生成exe后的依赖文件路径就是sys._MEIPASS，如果程序已打包，就会拼接这一个地址，在这个地址中进行查找文件。</p>
+<h3 id="–add-data"><a href="#–add-data" class="headerlink" title="–add-data"></a>–add-data</h3><p>虽然代码中这么写了，但是我们现在打包的时候还是不知道要指向哪些文件，我们的pyinstaller也不知道要把哪些文件放进程序中呀，这时候我们就需要往打包的data里面进行文件添加了。</p>
+<p>我们可以直接使用–add-data &lt;SRC;DEST or SRC:DEST&gt;在进行打包的时候直接将文件添加进去<font color=gray>（至于别的参数这里就不进行赘述了）</font>，也可以去修改打包时生成的.spec文件，通过记事本打开，可以发现里面有一个data变量，可以直接在那进行更改。</p>
+<p><a target="_blank" rel="noopener" href="https://imgse.com/i/pkedDII"><img src="https://s21.ax1x.com/2024/05/12/pkedDII.png" alt="pkedDII.png"></a></p>
+<p>这里的前一个参数是资源文件的路径，后面的参数是资源文件在打包后的可执行文件中的目标路径，也就是程序内部的路径。例如上方图片中的就是直接将同级目录下的文件直接放到文件中的当前目录下，就可以让程序直接读取了。如果是文件夹的话可以(‘resource’,’resource’)，也就是将resource这个文件夹传进去，然后放在叫resource这个文件夹的位置。</p>
+<p>这样我们打包出来的程序还是只有一个，且能够访问到程序中的资源文件<font color=gray>(通常在C:\Windows\Temp_MEIxxx或者C:\Users\用户名\AppData\Local\Temp_MEIxxx中)</font></p>
+
       
 
       
@@ -204,14 +224,6 @@ var _hmt = _hmt || [];
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Scrapy</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -219,16 +231,75 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/06/07/scrapy/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://xiaomin129.github.io/2024/05/12/pyinstaller-static/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2024/05/11/get-logged-in-QQ/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">部分网站和第三方软件是如何检查到设备上登录的QQ的？</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -248,420 +319,15 @@ var _hmt = _hmt || [];
 
 
 
-
-  
-    <article id="post-Django" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/02/18/Django/">Django开发基础流程</a>
-    </h1>
-  
-
-        
-        
-<a href="/2023/02/18/Django/" class="archive-article-date">
-  	<time datetime="2023-02-18T08:57:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-02-18</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Python Django框架Web开发的基础流程——Django是Python语言的快速Web开发框架。</p>
-        
-          <a class="article-more-a" href="/2023/02/18/Django/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Django</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Web开发</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2023/02/18/Django/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-influence2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/27/influence2/">互惠</a>
-    </h1>
-  
-
-        
-        
-<a href="/2020/02/27/influence2/" class="archive-article-date">
-  	<time datetime="2020-02-26T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-27</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>每一笔债都得还的干干净净，就好像上帝他老人家是债主。</p>
-        
-          <a class="article-more-a" href="/2020/02/27/influence2/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">《影响力》</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">心理学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/27/influence2/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-influence1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/09/influence1/">影响力的武器</a>
-    </h1>
-  
-
-        
-        
-<a href="/2020/02/09/influence1/" class="archive-article-date">
-  	<time datetime="2020-02-08T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-09</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这或许算是读书笔记吧，我总认为自己所看的任何东西不付诸实践，不自己从头理一遍的话，总会很快就忘掉，从而导致看了等于没看，所以我打算将自己的一些东西，记录下来。</p>
-        
-          <a class="article-more-a" href="/2020/02/09/influence1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">《影响力》</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">心理学</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/09/influence1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-隐藏文件小技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/06/%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%E5%B0%8F%E6%8A%80%E5%B7%A7/">隐藏文件小技巧</a>
-    </h1>
-  
-
-        
-        
-<a href="/2020/02/06/%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="archive-article-date">
-  	<time datetime="2020-02-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-06</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这是一个总结我所了解到的能够有效隐藏文件的方法及操作步骤，熟练掌握就可以很好地藏住自己的小秘密了呢</p>
-        
-          <a class="article-more-a" href="/2020/02/06/%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%E5%B0%8F%E6%8A%80%E5%B7%A7/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">实用技巧</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/06/%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%E5%B0%8F%E6%8A%80%E5%B7%A7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-我是訤緍" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/21/%E6%88%91%E6%98%AF%E8%A8%A4%E7%B7%8D/">我是訤緍</a>
-    </h1>
-  
-
-        
-        
-<a href="/2020/01/21/%E6%88%91%E6%98%AF%E8%A8%A4%E7%B7%8D/" class="archive-article-date">
-  	<time datetime="2020-01-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-21</time>
-</a>
-
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>訤緍，不知道为什么会取这个名字（可能就是当时脸滚键盘出来的），但是，就是一直用到了现在。</p>
-<p>我只是一只咸鱼，一只兴趣使然的咸鱼，希望翻身，却不想活动的咸鱼。<br>加油，尝试让自己变得有干劲起来吧。</p>
-<p><img src="/assets/blog/1.jpg"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">胡乱写写</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/21/%E6%88%91%E6%98%AF%E8%A8%A4%E7%B7%8D/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">« Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
+  
+
+  
+
+  
 
 
           </div>
@@ -698,8 +364,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
